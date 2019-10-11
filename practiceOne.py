@@ -9,7 +9,7 @@ reserved_words_fl = local_folder / 'data/reserved_words.txt'
 regular_expresions_fl = local_folder / 'data/regular_expresions.txt'
 
 def cls():
-    q = call('clear')
+    call('clear')
 
 def load_data():
     global tk_dic, re_dic, rw_list
