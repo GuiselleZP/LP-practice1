@@ -1,5 +1,6 @@
 # Subject: Lenguajes de programación 2019-II
-...............................................................................
+
+
 Lexical analyzer for the SR programming language.
 The 'practiceOne.py' file reads the data from the 'data' folder to identify the
 operator tokens, reserved words and regular expressions that will be useful to 
