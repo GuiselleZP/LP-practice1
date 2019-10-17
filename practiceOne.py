@@ -1,6 +1,6 @@
 import re
 import sys
-from subprocess import call
+from os import system, name
 from pathlib import Path
 
 local_folder = Path(__file__).parent
@@ -9,7 +9,12 @@ reserved_words_fl = local_folder / 'data/reserved_words.txt'
 regular_expresions_fl = local_folder / 'data/regular_expresions.txt'
 
 def cls():
-    call('clear')
+    # for windows
+    if name == 'nt':
+        system('cls')
+    #for mac and linux (os.name = 'posix')
+    else:
+        system('clear')
 
 def load_data():
     global tk_dic, re_dic, rw_list
@@ -46,7 +51,7 @@ def register_token(token, position):
         print(output)
 
 def analyze(string, position):
-    identifier = re.compile(re_dic['id'])
+    identifier = re.compile(re_dic['id'], re.I)
     number = re.compile(re_dic['tk_num'])
     array = re.compile(re_dic['tk_cadena'])
     operators = re.compile(re_dic['operators'])
@@ -66,18 +71,18 @@ def analyze(string, position):
         token.append('tk_cadena')
     elif identifier.match(string) is not None:
         temp = re.match(identifier, string)
-        separator = temp.span()[1]
+        separator = temp.end()
         if string[:separator] in rw_list:
             token.append(0)
         else:
             token.append('id')
     elif number.match(string) is not None:
         temp = re.match(number, string)
-        separator = temp.span()[1]
+        separator = temp.end()
         token.append('tk_num')
     elif operators.match(string) is not None:
         temp = operators.match(string)
-        separator = temp.span()[1]
+        separator = temp.end()
         token.append(0)
     elif string[0] == '\t':
         position[1] += 4
@@ -93,7 +98,7 @@ def analyze(string, position):
     token.append(string[:separator])
     register_token(token, position)
     position[1] += separator
-    analyze(string[separator:], position)
+    return analyze(string[separator:], position)
 
 
 def main():
