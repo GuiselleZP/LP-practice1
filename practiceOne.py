@@ -34,8 +34,6 @@ def lexical_error(position):
         print(output)
         sys.exit()
 
-# Include == 0	->	do not print
-# Include == 1	->	print (id, tk_num)
 def register_token(token, position):
     with open(analyzed_fl, 'a') as fl:
         if type(token[0]) is int:
