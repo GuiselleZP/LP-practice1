@@ -34,3 +34,4 @@
 %:=	tk_resasigno
 |:=	tk_orasigno
 &:=	tk_andasigno
+...	tk_tres_puntos
