@@ -2,7 +2,7 @@
 
 
 Lexical analyzer for the SR programming language.
-The 'practiceOne.py' file reads the data from the 'data' folder to identify the
+The 'practice_1.py' file reads the data from the 'data' folder to identify the
 operator tokens, reserved words and regular expressions that will be useful to 
 identify the lexemes of the files analyzed in the SR language.
 The files to test the operation of the program are in the 'test' folder.
