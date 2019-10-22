@@ -6,7 +6,7 @@ from pathlib import Path
 LOCAL_FOLDER = Path(__file__).parent
 TOKENS_FL = LOCAL_FOLDER / 'data/tokens.txt'
 RESERVED_WORDS_FL = LOCAL_FOLDER / 'data/reserved_words.txt'
-REGULAR_EXPRESIONS_fl = LOCAL_FOLDER / 'data/REGULAR_EXPRESIONS.txt'
+REGULAR_EXPRESIONS_FL = LOCAL_FOLDER / 'data/regular_expresions.txt'
 
 def cls():
     # for windows
@@ -20,7 +20,7 @@ def load_data():
     global tk_dic, re_dic, rw_list
     with open(TOKENS_FL, 'r') as fl:
         tk_dic = dict([[x.strip() for x in line.split('\t')] for line in fl])
-    with open(REGULAR_EXPRESIONS_fl, 'r') as fl:
+    with open(REGULAR_EXPRESIONS_FL, 'r') as fl:
         re_dic = dict([[x.strip() for x in line.split('\t')] for line in fl])
     with open(RESERVED_WORDS_FL, 'r') as fl:
         rw_list = set([x.strip() for x in fl.readlines()])
@@ -107,7 +107,7 @@ def main():
     new_name = name_file.split('.')[0]
     new_name = new_name + '_alz.txt'
     
-    input_fl = LOCAL_FOLDER / 'test'/ name_file
+    INPUT_FL = LOCAL_FOLDER / 'test'/ name_file
     ANALYZED_FL = LOCAL_FOLDER / 'test' / new_name
 
     load_data()
@@ -115,7 +115,7 @@ def main():
     auxfl = open(ANALYZED_FL, 'w')
     auxfl.close()
     position = [1, 1]
-    with open(input_fl, 'r') as fl:
+    with open(INPUT_FL, 'r') as fl:
         for line in fl:
             position[1] = 1
             analyze(line, position)
