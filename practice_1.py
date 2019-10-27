@@ -8,13 +8,15 @@ TOKENS_FL = LOCAL_FOLDER / 'data/tokens.txt'
 RESERVED_WORDS_FL = LOCAL_FOLDER / 'data/reserved_words.txt'
 REGULAR_EXPRESIONS_FL = LOCAL_FOLDER / 'data/regular_expresions.txt'
 
+
 def cls():
     # for windows
     if name == 'nt':
         system('cls')
-    #for mac and linux (os.name = 'posix')
+    # for mac and linux (os.name = 'posix')
     else:
         system('clear')
+
 
 def load_data():
     global tk_dic, re_dic, rw_list
@@ -34,6 +36,7 @@ def lexical_error(position):
         print(output)
         sys.exit()
 
+
 def register_token(token, position):
     with open(ANALYZED_FL, 'a') as fl:
         if type(token[0]) is int:
@@ -43,10 +46,11 @@ def register_token(token, position):
                 tk = token[1]
             output = "<{}, {}, {}>".format(tk, position[0], position[1])
         else:
-            output = "<{}, {}, {}, {}>".format(token[0], token[1],position[0],\
-                                        position[1])
-        fl.write(output + '\n');
+            output = "<{}, {}, {}, {}>".format(token[0], token[1], position[0],
+                                               position[1])
+        fl.write(output + '\n')
         print(output)
+
 
 def analyze(string, position):
     identifier = re.compile(re_dic['id'], re.I)
@@ -103,15 +107,17 @@ def main():
     global ANALYZED_FL, LOCAL_FOLDER, ANALYZED_FL
 
     cls()
-    name_file = input("Ingrese el nombre del archivo a analizar:\n")
+    if len(sys.argv) < 2:
+        print('Execute as:\npython3 practice_1.py name_file.txt')
+        return -1
+
+    name_file = sys.argv[1]
     new_name = name_file.split('.')[0]
     new_name = new_name + '_alz.txt'
-    
-    INPUT_FL = LOCAL_FOLDER / 'test'/ name_file
+    INPUT_FL = LOCAL_FOLDER / 'test'/name_file
     ANALYZED_FL = LOCAL_FOLDER / 'test' / new_name
 
     load_data()
-    
     auxfl = open(ANALYZED_FL, 'w')
     auxfl.close()
     position = [1, 1]
@@ -120,6 +126,7 @@ def main():
             position[1] = 1
             analyze(line, position)
             position[0] += 1
+
 
 if __name__ == '__main__':
     main()

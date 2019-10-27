@@ -9,3 +9,8 @@ The files to test the operation of the program are in the 'test' folder.
 When executing the program, it requests the name of a file located in the test 
 folder and generates a new one with the same name but with the terminal 
 '\_alz.txt' where the result of the lexical analysis is stored.
+Run the file as follows:
+
+´´´
+python3 practice_1.py name_file.txt
+´´´
